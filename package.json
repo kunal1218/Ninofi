@@ -1,0 +1,39 @@
+{
+  "name": "mavu-contracting-app",
+  "version": "1.0.0",
+  "description": "A comprehensive contracting app for managing teams, expenses, salaries, and schedules",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext js,jsx,ts,tsx",
+    "lint:fix": "eslint . --ext js,jsx,ts,tsx --fix"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.0",
+    "@mui/material": "^5.11.0",
+    "@mui/icons-material": "^5.11.0",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/x-date-pickers": "^6.0.0",
+    "date-fns": "^2.29.3",
+    "recharts": "^2.5.0",
+    "react-hook-form": "^7.43.0",
+    "react-hot-toast": "^2.4.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@vitejs/plugin-react": "^3.1.0",
+    "vite": "^4.1.0",
+    "eslint": "^8.34.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0"
+  },
+  "keywords": ["contracting", "team-management", "expenses", "schedules"],
+  "author": "Mavu Team",
+  "license": "MIT"
+}
