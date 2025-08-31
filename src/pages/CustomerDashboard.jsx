@@ -10,10 +10,13 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  ListItemAvatar,
   IconButton,
   Avatar,
   Divider,
-  Chip
+  Chip,
+  Card,
+  CardContent
 } from '@mui/material'
 import {
   Menu as MenuIcon,
@@ -27,14 +30,6 @@ import {
   Home,
   Business
 } from '@mui/icons-material'
-import {
-  Card,
-  CardContent,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText
-} from '@mui/material'
 import { useAuth } from '../contexts/AuthContext'
 import CustomerOverview from '../components/customer/CustomerOverview'
 import ContractorBrowse from '../components/customer/ContractorBrowse'
