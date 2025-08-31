@@ -27,6 +27,14 @@ import {
   Home,
   Business
 } from '@mui/icons-material'
+import {
+  Card,
+  CardContent,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText
+} from '@mui/material'
 import { useAuth } from '../contexts/AuthContext'
 import CustomerOverview from '../components/customer/CustomerOverview'
 import ContractorBrowse from '../components/customer/ContractorBrowse'
@@ -205,7 +213,50 @@ const CustomerDashboard = () => {
           <Route path="/" element={<CustomerOverview />} />
           <Route path="/browse" element={<ContractorBrowse />} />
           <Route path="/projects" element={<ProjectManagement />} />
-          <Route path="/chats" element={<div>Chats Page</div>} />
+          <Route path="/chats" element={
+            <Box sx={{ p: 3 }}>
+              <Typography variant="h4" gutterBottom sx={{ fontWeight: 600 }}>
+                Chat with Contractors
+              </Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
+                Communicate with your contractors about project updates and questions
+              </Typography>
+              <Card>
+                <CardContent>
+                  <Typography variant="h6" gutterBottom>
+                    Recent Conversations
+                  </Typography>
+                  <List>
+                    <ListItem>
+                      <ListItemAvatar>
+                        <Avatar sx={{ bgcolor: 'primary.main' }}>A</Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary="ABC Construction Co."
+                        secondary="Kitchen renovation project updates"
+                      />
+                      <Chip label="2 new" color="primary" size="small" />
+                    </ListItem>
+                    <ListItem>
+                      <ListItemAvatar>
+                        <Avatar sx={{ bgcolor: 'success.main' }}>X</Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary="XYZ Renovations"
+                        secondary="Bathroom remodel questions"
+                      />
+                      <Chip label="1 new" color="primary" size="small" />
+                    </ListItem>
+                  </List>
+                  <Box sx={{ mt: 2 }}>
+                    <Button variant="contained" startIcon={<Chat />}>
+                      Start New Chat
+                    </Button>
+                  </Box>
+                </CardContent>
+              </Card>
+            </Box>
+          } />
           <Route path="/profile" element={<CustomerProfile />} />
         </Routes>
       </Box>
