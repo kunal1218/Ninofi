@@ -24,7 +24,7 @@ import {
 import { useAuth } from '../contexts/AuthContext'
 
 const LoginPage = () => {
-  const [userType, setUserType] = useState('contractor')
+  const [userType, setUserType] = useState('customer')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -45,17 +45,17 @@ const LoginPage = () => {
     
     const success = await login(email, password, userType)
     if (success) {
-      navigate(userType === 'contractor' ? '/contractor' : '/worker')
+      navigate(userType === 'customer' ? '/customer' : userType === 'contractor' ? '/contractor' : '/worker')
     }
     setLoading(false)
   }
 
   const handleDemoLogin = async () => {
     setLoading(true)
-    const demoEmail = userType === 'contractor' ? 'contractor@demo.com' : 'worker@demo.com'
+    const demoEmail = userType === 'customer' ? 'customer@demo.com' : userType === 'contractor' ? 'contractor@demo.com' : 'worker@demo.com'
     const success = await login(demoEmail, 'demo123', userType)
     if (success) {
-      navigate(userType === 'contractor' ? '/contractor' : '/worker')
+      navigate(userType === 'customer' ? '/customer' : userType === 'contractor' ? '/contractor' : '/worker')
     }
     setLoading(false)
   }
@@ -128,6 +128,10 @@ const LoginPage = () => {
                 }
               }}
             >
+              <ToggleButton value="customer">
+                <Person sx={{ mr: 1 }} />
+                Customer
+              </ToggleButton>
               <ToggleButton value="contractor">
                 <Business sx={{ mr: 1 }} />
                 Contractor
@@ -227,7 +231,9 @@ const LoginPage = () => {
               {userType === 'contractor' ? 'Contractor Features:' : 'Worker Features:'}
             </Typography>
             <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center' }}>
-              {userType === 'contractor' 
+              {userType === 'customer' 
+                ? 'Browse contractors, compare services, and start projects'
+                : userType === 'contractor' 
                 ? 'Manage teams, track expenses, handle payroll, and schedule workers'
                 : 'View schedule, track hours, submit expenses, and manage profile'
               }

@@ -5,10 +5,18 @@ A comprehensive web application for managing contracting operations, including t
 ## Features
 
 ### 🔐 Authentication & User Types
+- **Customer Login**: Browse contractors, manage projects, and communicate
 - **Contractor Login**: Access to full management dashboard
 - **Worker Login**: Access to worker-specific features
 - Beautiful login interface with user type selection
 - Secure authentication system
+
+### 🏠 Customer Dashboard
+- **Dashboard Overview**: Project statistics, saved contractors, quick actions
+- **Browse Contractors**: Search and filter by service, region, price, and rating
+- **My Projects**: Manage ongoing and completed projects with milestones
+- **Chats**: Communicate with contractors
+- **My Profile**: Manage personal information and preferences
 
 ### 👷‍♂️ Contractor Dashboard
 - **Team Management**: Add, edit, and manage workers
@@ -74,6 +82,11 @@ A comprehensive web application for managing contracting operations, including t
 ```
 src/
 ├── components/
+│   ├── customer/           # Customer-specific components
+│   │   ├── CustomerOverview.jsx
+│   │   ├── ContractorBrowse.jsx
+│   │   ├── ProjectManagement.jsx
+│   │   └── CustomerProfile.jsx
 │   ├── contractor/          # Contractor-specific components
 │   │   ├── DashboardOverview.jsx
 │   │   ├── TeamManagement.jsx
@@ -90,6 +103,7 @@ src/
 │   └── AuthContext.jsx     # Authentication context
 ├── pages/
 │   ├── LoginPage.jsx       # Login page with user type selection
+│   ├── CustomerDashboard.jsx
 │   ├── ContractorDashboard.jsx
 │   └── WorkerDashboard.jsx
 ├── App.jsx                 # Main app component
@@ -99,10 +113,17 @@ src/
 ## Key Components
 
 ### LoginPage
-- User type selection (Contractor/Worker)
+- User type selection (Customer/Contractor/Worker)
 - Email and password authentication
 - Demo login functionality
 - Responsive design with Material-UI
+
+### CustomerDashboard
+- Sidebar navigation for customer features
+- Overview dashboard with project statistics
+- Contractor browsing with advanced filtering
+- Project management with milestones
+- Profile management with preferences
 
 ### ContractorDashboard
 - Sidebar navigation with all management features

@@ -36,9 +36,9 @@ export const AuthProvider = ({ children }) => {
           id: Date.now().toString(),
           email,
           userType,
-          name: userType === 'contractor' ? 'John Contractor' : 'Mike Worker',
+          name: userType === 'customer' ? 'Sarah Customer' : userType === 'contractor' ? 'John Contractor' : 'Mike Worker',
           company: userType === 'contractor' ? 'ABC Construction Co.' : null,
-          role: userType === 'contractor' ? 'Owner' : 'Laborer'
+          role: userType === 'customer' ? 'Homeowner' : userType === 'contractor' ? 'Owner' : 'Laborer'
         }
         
         setUser(userData)
