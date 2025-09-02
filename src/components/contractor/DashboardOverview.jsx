@@ -228,6 +228,15 @@ const DashboardOverview = () => {
                 >
                   New Project
                 </Button>
+                <Button
+                  variant="outlined"
+                  startIcon={<Add />}
+                  fullWidth
+                  sx={{ justifyContent: 'flex-start', py: 1.5 }}
+                  onClick={() => window.location.href = '/contractor/jobs'}
+                >
+                  Post Job Offer
+                </Button>
               </Box>
             </CardContent>
           </Card>
@@ -304,6 +313,59 @@ const DashboardOverview = () => {
                   </Box>
                   <LinearProgress variant="determinate" value={63} sx={{ height: 6 }} />
                 </Box>
+              </Box>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
+
+      {/* Job Offers and Applications */}
+      <Grid container spacing={3} sx={{ mt: 3 }}>
+        <Grid item xs={12} md={6}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6" gutterBottom>Active Job Offers</Typography>
+              <Box sx={{ textAlign: 'center', py: 3 }}>
+                <Typography variant="h4" color="primary" gutterBottom>
+                  3
+                </Typography>
+                <Typography variant="body2" color="text.secondary" gutterBottom>
+                  Job offers currently posted
+                </Typography>
+                <Button
+                  variant="contained"
+                  size="small"
+                  startIcon={<Add />}
+                  onClick={() => window.location.href = '/contractor/jobs'}
+                  sx={{ mt: 1 }}
+                >
+                  Post New Job
+                </Button>
+              </Box>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        <Grid item xs={12} md={6}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6" gutterBottom>Worker Applications</Typography>
+              <Box sx={{ textAlign: 'center', py: 3 }}>
+                <Typography variant="h4" color="warning.main" gutterBottom>
+                  8
+                </Typography>
+                <Typography variant="body2" color="text.secondary" gutterBottom>
+                  Pending applications
+                </Typography>
+                <Button
+                  variant="contained"
+                  size="small"
+                  startIcon={<People />}
+                  onClick={() => window.location.href = '/contractor/jobs'}
+                  sx={{ mt: 1 }}
+                >
+                  Review Applications
+                </Button>
               </Box>
             </CardContent>
           </Card>

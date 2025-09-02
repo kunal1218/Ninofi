@@ -23,7 +23,8 @@ import {
   Person,
   Work,
   Logout,
-  Notifications
+  Notifications,
+  AttachMoney
 } from '@mui/icons-material'
 import { useAuth } from '../contexts/AuthContext'
 import WorkerOverview from '../components/worker/WorkerOverview'
@@ -31,6 +32,8 @@ import WorkerSchedule from '../components/worker/WorkerSchedule'
 import ExpenseSubmission from '../components/worker/ExpenseSubmission'
 import WorkerProfile from '../components/worker/WorkerProfile'
 import ApprovalStatus from '../components/worker/ApprovalStatus'
+import JobOffers from '../components/worker/JobOffers'
+import IncomeTracker from '../components/worker/IncomeTracker'
 
 const drawerWidth = 250
 
@@ -50,6 +53,8 @@ const WorkerDashboard = () => {
 
   const menuItems = [
     { text: 'Dashboard', icon: <Dashboard />, path: '/worker' },
+    { text: 'Browse Jobs', icon: <Work />, path: '/worker/jobs' },
+    { text: 'Income Tracker', icon: <AttachMoney />, path: '/worker/income' },
     { text: 'Approval Status', icon: <Notifications />, path: '/worker/approval' },
     { text: 'My Schedule', icon: <Schedule />, path: '/worker/schedule' },
     { text: 'Submit Expenses', icon: <Receipt />, path: '/worker/expenses' },
@@ -202,6 +207,8 @@ const WorkerDashboard = () => {
       >
         <Routes>
           <Route path="/" element={<WorkerOverview />} />
+          <Route path="/jobs" element={<JobOffers />} />
+          <Route path="/income" element={<IncomeTracker />} />
           <Route path="/approval" element={<ApprovalStatus />} />
           <Route path="/schedule" element={<WorkerSchedule />} />
           <Route path="/expenses" element={<ExpenseSubmission />} />

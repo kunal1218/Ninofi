@@ -24,7 +24,7 @@ import {
 import { useAuth } from '../contexts/AuthContext'
 
 const LoginPage = () => {
-  const [userType, setUserType] = useState('customer')
+  const [userType, setUserType] = useState('customer') // Default to customer
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -221,9 +221,16 @@ const LoginPage = () => {
               disabled={loading}
               sx={{ borderRadius: 2 }}
             >
-              Demo Login
+              Demo Login {userType && `(${userType.charAt(0).toUpperCase() + userType.slice(1)})`}
             </Button>
+            {!userType && (
+              <Typography variant="caption" color="warning.main" sx={{ display: 'block', mt: 1 }}>
+                Please select a user type above first
+              </Typography>
+            )}
           </Box>
+
+
 
           {/* Features Preview */}
           <Box sx={{ mt: 4, p: 3, bgcolor: 'grey.50', borderRadius: 2 }}>

@@ -43,6 +43,7 @@ import PayrollManager from '../components/contractor/PayrollManager'
 import ScheduleManager from '../components/contractor/ScheduleManager'
 import DashboardOverview from '../components/contractor/DashboardOverview'
 import WorkerApprovalRequests from '../components/contractor/WorkerApprovalRequests'
+import WorkerRequestManager from '../components/contractor/WorkerRequestManager'
 
 const drawerWidth = 280
 
@@ -64,6 +65,7 @@ const ContractorDashboard = () => {
     { text: 'Dashboard', icon: <Dashboard />, path: '/contractor' },
     { text: 'Team Management', icon: <People />, path: '/contractor/team' },
     { text: 'Worker Requests', icon: <Notifications />, path: '/contractor/requests' },
+    { text: 'Job Offers', icon: <Work />, path: '/contractor/jobs' },
     { text: 'Expense Tracker', icon: <AttachMoney />, path: '/contractor/expenses' },
     { text: 'Payroll Manager', icon: <Work />, path: '/contractor/payroll' },
     { text: 'Schedule Manager', icon: <Schedule />, path: '/contractor/schedule' },
@@ -221,6 +223,7 @@ const ContractorDashboard = () => {
           <Route path="/" element={<DashboardOverview />} />
           <Route path="/team" element={<TeamManagement />} />
           <Route path="/requests" element={<WorkerApprovalRequests />} />
+          <Route path="/jobs" element={<WorkerRequestManager />} />
           <Route path="/expenses" element={<ExpenseTracker />} />
           <Route path="/payroll" element={<PayrollManager />} />
           <Route path="/schedule" element={<ScheduleManager />} />

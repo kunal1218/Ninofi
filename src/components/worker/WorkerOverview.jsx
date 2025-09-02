@@ -234,11 +234,29 @@ const WorkerOverview = () => {
                 </Button>
                 <Button
                   variant="outlined"
+                  startIcon={<AttachMoney />}
+                  fullWidth
+                  sx={{ justifyContent: 'flex-start', py: 1.5 }}
+                  onClick={() => window.location.href = '/worker/income'}
+                >
+                  View Income
+                </Button>
+                <Button
+                  variant="outlined"
                   startIcon={<Work />}
                   fullWidth
                   sx={{ justifyContent: 'flex-start', py: 1.5 }}
                 >
                   Update Hours
+                </Button>
+                <Button
+                  variant="outlined"
+                  startIcon={<Work />}
+                  fullWidth
+                  sx={{ justifyContent: 'flex-start', py: 1.5 }}
+                  onClick={() => window.location.href = '/worker/jobs'}
+                >
+                  Browse Job Offers
                 </Button>
                 <Button
                   variant="outlined"
@@ -254,10 +272,10 @@ const WorkerOverview = () => {
         </Grid>
       </Grid>
 
-      {/* Weekly Hours and Recent Activities */}
-      <Grid container spacing={3}>
+      {/* Weekly Hours, Recent Activities, Job Opportunities, and Income Summary */}
+      <Grid container spacing={3} sx={{ mt: 0 }}>
         <Grid item xs={12} md={6}>
-          <Card>
+          <Card sx={{ height: '100%' }}>
             <CardContent>
               <Typography variant="h6" gutterBottom sx={{ mb: 3 }}>
                 This Week's Hours
@@ -304,7 +322,7 @@ const WorkerOverview = () => {
         </Grid>
 
         <Grid item xs={12} md={6}>
-          <Card>
+          <Card sx={{ height: '100%' }}>
             <CardContent>
               <Typography variant="h6" gutterBottom sx={{ mb: 3 }}>
                 Recent Activities
@@ -335,6 +353,62 @@ const WorkerOverview = () => {
                   </ListItem>
                 ))}
               </List>
+            </CardContent>
+          </Card>
+        </Grid>
+        
+        {/* Job Opportunities */}
+        <Grid item xs={12} md={6}>
+          <Card sx={{ height: '100%' }}>
+            <CardContent>
+              <Typography variant="h6" gutterBottom sx={{ mb: 3 }}>
+                Job Opportunities
+              </Typography>
+              <Box sx={{ textAlign: 'center', py: 2 }}>
+                <Typography variant="h4" color="primary" gutterBottom>
+                  12
+                </Typography>
+                <Typography variant="body2" color="text.secondary" gutterBottom>
+                  Available job offers
+                </Typography>
+                <Button
+                  variant="contained"
+                  size="small"
+                  startIcon={<Work />}
+                  onClick={() => window.location.href = '/worker/jobs'}
+                  sx={{ mt: 1 }}
+                >
+                  Browse Jobs
+                </Button>
+              </Box>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        {/* Income Summary */}
+        <Grid item xs={12} md={6}>
+          <Card sx={{ height: '100%' }}>
+            <CardContent>
+              <Typography variant="h6" gutterBottom sx={{ mb: 3 }}>
+                This Month's Income
+              </Typography>
+              <Box sx={{ textAlign: 'center', py: 2 }}>
+                <Typography variant="h4" color="success.main" gutterBottom>
+                  $2,840
+                </Typography>
+                <Typography variant="body2" color="text.secondary" gutterBottom>
+                  Net earnings this month
+                </Typography>
+                <Button
+                  variant="contained"
+                  size="small"
+                  startIcon={<AttachMoney />}
+                  onClick={() => window.location.href = '/worker/income'}
+                  sx={{ mt: 1 }}
+                >
+                  View Details
+                </Button>
+              </Box>
             </CardContent>
           </Card>
         </Grid>

@@ -10,6 +10,7 @@ import ContractorOnboarding from './pages/ContractorOnboarding'
 import ContractorVerification from './pages/ContractorVerification'
 import WorkerOnboarding from './pages/WorkerOnboarding'
 import WorkerVerification from './pages/WorkerVerification'
+
 import LoadingScreen from './components/LoadingScreen'
 
 const ProtectedRoute = ({ children, userType }) => {
@@ -97,6 +98,8 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/login" element={!user ? <LoginPage /> : <Navigate to={user.userType === 'customer' ? '/customer' : user.userType === 'contractor' ? '/contractor' : '/worker'} replace />} />
       
+
+      
       {/* Contractor Routes */}
       <Route path="/contractor" element={<ContractorRoute />} />
       <Route path="/contractor/*" element={<ContractorRoute />} />
@@ -146,6 +149,8 @@ const AppRoutes = () => {
           </ProtectedRoute>
         } 
       />
+      
+
       
       <Route path="/" element={<Navigate to="/login" replace />} />
     </Routes>

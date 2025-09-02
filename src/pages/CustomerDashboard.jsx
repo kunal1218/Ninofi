@@ -47,6 +47,8 @@ const CustomerDashboard = () => {
   const [mobileOpen, setMobileOpen] = useState(false)
   const { user, logout } = useAuth()
   const navigate = useNavigate()
+  
+
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
