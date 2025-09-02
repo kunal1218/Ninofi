@@ -38,7 +38,26 @@ export const AuthProvider = ({ children }) => {
           userType,
           name: userType === 'customer' ? 'Sarah Customer' : userType === 'contractor' ? 'John Contractor' : 'Mike Worker',
           company: userType === 'contractor' ? 'ABC Construction Co.' : null,
-          role: userType === 'customer' ? 'Homeowner' : userType === 'contractor' ? 'Owner' : 'Laborer'
+          role: userType === 'customer' ? 'Homeowner' : userType === 'contractor' ? 'Owner' : 'Laborer',
+          // Onboarding status
+          profileCompleted: userType === 'customer' ? true : false, // Customers don't need onboarding
+          isVerified: userType === 'customer' ? true : false,
+          // Profile information (will be filled during onboarding)
+          phone: '',
+          address: '',
+          skills: [],
+          experience: '',
+          license: '',
+          insurance: '',
+          references: [],
+          // For contractors
+          businessName: '',
+          businessType: '',
+          specialties: [],
+          // For workers
+          workerType: '',
+          hourlyRate: '',
+          availability: []
         }
         
         setUser(userData)
@@ -54,6 +73,35 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
+  const updateUserProfile = (profileData) => {
+    const updatedUser = { ...user, ...profileData, profileCompleted: true }
+    setUser(updatedUser)
+    localStorage.setItem('mavu_user', JSON.stringify(updatedUser))
+    
+    if (profileData.pendingApproval) {
+      toast.success('Request submitted successfully! Waiting for business approval.')
+    } else {
+      toast.success('Profile updated successfully!')
+    }
+  }
+
+  const approveWorkerRequest = (workerId) => {
+    // This would typically make an API call to approve the worker
+    toast.success('Worker request approved!')
+  }
+
+  const rejectWorkerRequest = (workerId) => {
+    // This would typically make an API call to reject the worker
+    toast.error('Worker request rejected!')
+  }
+
+  const verifyUser = () => {
+    const updatedUser = { ...user, isVerified: true }
+    setUser(updatedUser)
+    localStorage.setItem('mavu_user', JSON.stringify(updatedUser))
+    toast.success('Account verified successfully!')
+  }
+
   const logout = () => {
     setUser(null)
     localStorage.removeItem('mavu_user')
@@ -64,7 +112,11 @@ export const AuthProvider = ({ children }) => {
     user,
     loading,
     login,
-    logout
+    logout,
+    updateUserProfile,
+    verifyUser,
+    approveWorkerRequest,
+    rejectWorkerRequest
   }
 
   return (

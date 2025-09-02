@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   Box,
   Grid,
@@ -23,10 +24,13 @@ import {
   LocationOn,
   Business,
   Add,
-  TrendingUp
+  TrendingUp,
+  ArrowForward
 } from '@mui/icons-material'
 
 const CustomerOverview = () => {
+  const navigate = useNavigate()
+  
   // Mock data - replace with actual API calls
   const customerData = {
     name: 'Sarah Customer',
@@ -133,7 +137,18 @@ const CustomerOverview = () => {
       {/* Customer Stats Cards */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
         <Grid item xs={12} sm={6} md={3}>
-          <Card sx={{ background: 'linear-gradient(135deg, #4caf50, #8bc34a)' }}>
+          <Card 
+            sx={{ 
+              background: 'linear-gradient(135deg, #4caf50, #8bc34a)',
+              cursor: 'pointer',
+              transition: 'transform 0.2s, box-shadow 0.2s',
+              '&:hover': {
+                transform: 'translateY(-4px)',
+                boxShadow: 8
+              }
+            }}
+            onClick={() => navigate('/customer/projects')}
+          >
             <CardContent sx={{ color: 'white' }}>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Box>
@@ -143,6 +158,9 @@ const CustomerOverview = () => {
                   <Typography variant="body2" sx={{ opacity: 0.8 }}>
                     Total Projects
                   </Typography>
+                  <Typography variant="caption" sx={{ opacity: 0.7, display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                    Click to view <ArrowForward sx={{ fontSize: 12 }} />
+                  </Typography>
                 </Box>
                 <Assignment sx={{ fontSize: 40, opacity: 0.8 }} />
               </Box>
@@ -150,7 +168,18 @@ const CustomerOverview = () => {
           </Card>
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <Card sx={{ background: 'linear-gradient(135deg, #2196f3, #03a9f4)' }}>
+          <Card 
+            sx={{ 
+              background: 'linear-gradient(135deg, #2196f3, #03a9f4)',
+              cursor: 'pointer',
+              transition: 'transform 0.2s, box-shadow 0.2s',
+              '&:hover': {
+                transform: 'translateY(-4px)',
+                boxShadow: 8
+              }
+            }}
+            onClick={() => navigate('/customer/projects')}
+          >
             <CardContent sx={{ color: 'white' }}>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Box>
@@ -160,6 +189,9 @@ const CustomerOverview = () => {
                   <Typography variant="body2" sx={{ opacity: 0.8 }}>
                     Active Projects
                   </Typography>
+                  <Typography variant="caption" sx={{ opacity: 0.7, display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                    Click to view <ArrowForward sx={{ fontSize: 12 }} />
+                  </Typography>
                 </Box>
                 <TrendingUp sx={{ fontSize: 40, opacity: 0.8 }} />
               </Box>
@@ -167,7 +199,18 @@ const CustomerOverview = () => {
           </Card>
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <Card sx={{ background: 'linear-gradient(135deg, #ff9800, #ffc107)' }}>
+          <Card 
+            sx={{ 
+              background: 'linear-gradient(135deg, #ff9800, #ffc107)',
+              cursor: 'pointer',
+              transition: 'transform 0.2s, box-shadow 0.2s',
+              '&:hover': {
+                transform: 'translateY(-4px)',
+                boxShadow: 8
+              }
+            }}
+            onClick={() => navigate('/customer/browse')}
+          >
             <CardContent sx={{ color: 'white' }}>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Box>
@@ -177,6 +220,9 @@ const CustomerOverview = () => {
                   <Typography variant="body2" sx={{ opacity: 0.8 }}>
                     Saved Contractors
                   </Typography>
+                  <Typography variant="caption" sx={{ opacity: 0.7, display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                    Click to view <ArrowForward sx={{ fontSize: 12 }} />
+                  </Typography>
                 </Box>
                 <Business sx={{ fontSize: 40, opacity: 0.8 }} />
               </Box>
@@ -184,7 +230,18 @@ const CustomerOverview = () => {
           </Card>
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <Card sx={{ background: 'linear-gradient(135deg, #9c27b0, #e91e63)' }}>
+          <Card 
+            sx={{ 
+              background: 'linear-gradient(135deg, #9c27b0, #e91e63)',
+              cursor: 'pointer',
+              transition: 'transform 0.2s, box-shadow 0.2s',
+              '&:hover': {
+                transform: 'translateY(-4px)',
+                boxShadow: 8
+              }
+            }}
+            onClick={() => navigate('/customer/projects')}
+          >
             <CardContent sx={{ color: 'white' }}>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Box>
@@ -194,6 +251,9 @@ const CustomerOverview = () => {
                   <Typography variant="body2" sx={{ opacity: 0.8 }}>
                     Total Spent
                   </Typography>
+                  <Typography variant="caption" sx={{ opacity: 0.7, display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                    Click to view <ArrowForward sx={{ fontSize: 12 }} />
+                  </Typography>
                 </Box>
                 <Assignment sx={{ fontSize: 40, opacity: 0.8 }} />
               </Box>
@@ -201,6 +261,13 @@ const CustomerOverview = () => {
           </Card>
         </Grid>
       </Grid>
+      
+      {/* Hint text */}
+      <Box sx={{ textAlign: 'center', mb: 4 }}>
+        <Typography variant="body2" color="text.secondary" sx={{ fontStyle: 'italic' }}>
+          💡 Click on any metric card above to view more details
+        </Typography>
+      </Box>
 
       {/* Quick Actions */}
       <Card sx={{ mb: 4 }}>
@@ -213,6 +280,7 @@ const CustomerOverview = () => {
               variant="contained"
               startIcon={<Search />}
               sx={{ px: 3, py: 1.5 }}
+              onClick={() => navigate('/customer/browse')}
             >
               Find New Contractor
             </Button>
@@ -220,6 +288,7 @@ const CustomerOverview = () => {
               variant="outlined"
               startIcon={<Add />}
               sx={{ px: 3, py: 1.5 }}
+              onClick={() => navigate('/customer/projects')}
             >
               Start New Project
             </Button>
@@ -227,6 +296,7 @@ const CustomerOverview = () => {
               variant="outlined"
               startIcon={<Chat />}
               sx={{ px: 3, py: 1.5 }}
+              onClick={() => navigate('/customer/chats')}
             >
               View Messages
             </Button>
@@ -234,6 +304,7 @@ const CustomerOverview = () => {
               variant="outlined"
               startIcon={<Assignment />}
               sx={{ px: 3, py: 1.5 }}
+              onClick={() => navigate('/customer/projects')}
             >
               Project History
             </Button>
@@ -251,7 +322,15 @@ const CustomerOverview = () => {
               </Typography>
               <List>
                 {recentProjects.map((project) => (
-                  <ListItem key={project.id} sx={{ px: 0 }}>
+                  <ListItem 
+                    key={project.id} 
+                    sx={{ 
+                      px: 0, 
+                      cursor: 'pointer',
+                      '&:hover': { bgcolor: 'action.hover' }
+                    }}
+                    onClick={() => navigate('/customer/projects')}
+                  >
                     <ListItemAvatar>
                       <Avatar sx={{ bgcolor: 'primary.main' }}>
                         <Assignment />
@@ -287,7 +366,15 @@ const CustomerOverview = () => {
               </Typography>
               <List>
                 {savedContractors.map((contractor) => (
-                  <ListItem key={contractor.id} sx={{ px: 0 }}>
+                  <ListItem 
+                    key={contractor.id} 
+                    sx={{ 
+                      px: 0, 
+                      cursor: 'pointer',
+                      '&:hover': { bgcolor: 'action.hover' }
+                    }}
+                    onClick={() => navigate('/customer/browse')}
+                  >
                     <ListItemAvatar>
                       <Avatar sx={{ bgcolor: 'success.main' }}>
                         {contractor.image}

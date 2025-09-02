@@ -30,6 +30,7 @@ import WorkerOverview from '../components/worker/WorkerOverview'
 import WorkerSchedule from '../components/worker/WorkerSchedule'
 import ExpenseSubmission from '../components/worker/ExpenseSubmission'
 import WorkerProfile from '../components/worker/WorkerProfile'
+import ApprovalStatus from '../components/worker/ApprovalStatus'
 
 const drawerWidth = 250
 
@@ -49,6 +50,7 @@ const WorkerDashboard = () => {
 
   const menuItems = [
     { text: 'Dashboard', icon: <Dashboard />, path: '/worker' },
+    { text: 'Approval Status', icon: <Notifications />, path: '/worker/approval' },
     { text: 'My Schedule', icon: <Schedule />, path: '/worker/schedule' },
     { text: 'Submit Expenses', icon: <Receipt />, path: '/worker/expenses' },
     { text: 'My Profile', icon: <Person />, path: '/worker/profile' }
@@ -153,7 +155,7 @@ const WorkerDashboard = () => {
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             Mavu Worker Dashboard
           </Typography>
-          <IconButton color="inherit">
+          <IconButton color="inherit" onClick={() => navigate('/worker/approval')}>
             <Notifications />
           </IconButton>
         </Toolbar>
@@ -200,6 +202,7 @@ const WorkerDashboard = () => {
       >
         <Routes>
           <Route path="/" element={<WorkerOverview />} />
+          <Route path="/approval" element={<ApprovalStatus />} />
           <Route path="/schedule" element={<WorkerSchedule />} />
           <Route path="/expenses" element={<ExpenseSubmission />} />
           <Route path="/profile" element={<WorkerProfile />} />

@@ -42,6 +42,7 @@ import ExpenseTracker from '../components/contractor/ExpenseTracker'
 import PayrollManager from '../components/contractor/PayrollManager'
 import ScheduleManager from '../components/contractor/ScheduleManager'
 import DashboardOverview from '../components/contractor/DashboardOverview'
+import WorkerApprovalRequests from '../components/contractor/WorkerApprovalRequests'
 
 const drawerWidth = 280
 
@@ -62,6 +63,7 @@ const ContractorDashboard = () => {
   const menuItems = [
     { text: 'Dashboard', icon: <Dashboard />, path: '/contractor' },
     { text: 'Team Management', icon: <People />, path: '/contractor/team' },
+    { text: 'Worker Requests', icon: <Notifications />, path: '/contractor/requests' },
     { text: 'Expense Tracker', icon: <AttachMoney />, path: '/contractor/expenses' },
     { text: 'Payroll Manager', icon: <Work />, path: '/contractor/payroll' },
     { text: 'Schedule Manager', icon: <Schedule />, path: '/contractor/schedule' },
@@ -168,8 +170,8 @@ const ContractorDashboard = () => {
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             Mavu Contractor Dashboard
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={3} color="error">
+          <IconButton color="inherit" onClick={() => navigate('/contractor/requests')}>
+            <Badge badgeContent={2} color="error">
               <Notifications />
             </Badge>
           </IconButton>
@@ -218,6 +220,7 @@ const ContractorDashboard = () => {
         <Routes>
           <Route path="/" element={<DashboardOverview />} />
           <Route path="/team" element={<TeamManagement />} />
+          <Route path="/requests" element={<WorkerApprovalRequests />} />
           <Route path="/expenses" element={<ExpenseTracker />} />
           <Route path="/payroll" element={<PayrollManager />} />
           <Route path="/schedule" element={<ScheduleManager />} />
