@@ -2,16 +2,21 @@ import React, { useState, useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Box } from '@mui/material'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
+// import { StripeConnectProvider } from './contexts/StripeConnectContext'
 import LoginPage from './pages/LoginPage'
 import CustomerDashboard from './pages/CustomerDashboard'
 import ContractorDashboard from './pages/ContractorDashboard'
+import ProjectSelection from './pages/ProjectSelection'
 import WorkerDashboard from './pages/WorkerDashboard'
 import ContractorOnboarding from './pages/ContractorOnboarding'
 import ContractorVerification from './pages/ContractorVerification'
 import WorkerOnboarding from './pages/WorkerOnboarding'
 import WorkerVerification from './pages/WorkerVerification'
+// import PaymentSuccess from './pages/PaymentSuccess'
 
 import LoadingScreen from './components/LoadingScreen'
+// import StripeConnectDashboard from './components/stripe/StripeConnectDashboard'
+// import CustomerStorefront from './components/stripe/CustomerStorefront'
 
 const ProtectedRoute = ({ children, userType }) => {
   const { user, loading } = useAuth()
@@ -56,7 +61,8 @@ const ContractorRoute = () => {
     return <Navigate to="/contractor/verification" replace />
   }
   
-  return <ContractorDashboard />
+  // Redirect to project selection first
+  return <Navigate to="/contractor/projects" replace />
 }
 
 const WorkerRoute = () => {
@@ -102,7 +108,30 @@ const AppRoutes = () => {
       
       {/* Contractor Routes */}
       <Route path="/contractor" element={<ContractorRoute />} />
-      <Route path="/contractor/*" element={<ContractorRoute />} />
+      <Route 
+        path="/contractor/projects" 
+        element={
+          <ProtectedRoute userType="contractor">
+            <ProjectSelection />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/contractor/dashboard" 
+        element={
+          <ProtectedRoute userType="contractor">
+            <ContractorDashboard />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/contractor/dashboard/*" 
+        element={
+          <ProtectedRoute userType="contractor">
+            <ContractorDashboard />
+          </ProtectedRoute>
+        } 
+      />
       <Route 
         path="/contractor/onboarding" 
         element={
@@ -150,6 +179,33 @@ const AppRoutes = () => {
         } 
       />
       
+      {/* Stripe Connect Routes - DISABLED */}
+      {/* <Route 
+        path="/stripe-connect" 
+        element={
+          <StripeConnectProvider>
+            <StripeConnectDashboard />
+          </StripeConnectProvider>
+        } 
+      />
+      
+      <Route 
+        path="/payment-success" 
+        element={
+          <StripeConnectProvider>
+            <PaymentSuccess />
+          </StripeConnectProvider>
+        } 
+      />
+      
+      <Route 
+        path="/storefront/:accountId" 
+        element={
+          <StripeConnectProvider>
+            <CustomerStorefront />
+          </StripeConnectProvider>
+        } 
+      /> */}
 
       
       <Route path="/" element={<Navigate to="/login" replace />} />

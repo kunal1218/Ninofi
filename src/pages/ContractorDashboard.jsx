@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import {
   Box,
   AppBar,
@@ -34,7 +34,10 @@ import {
   Business,
   TrendingUp,
   Work,
-  Notifications
+  Notifications,
+  Home,
+  AccountBalance,
+  Folder
 } from '@mui/icons-material'
 import { useAuth } from '../contexts/AuthContext'
 import TeamManagement from '../components/contractor/TeamManagement'
@@ -44,33 +47,55 @@ import ScheduleManager from '../components/contractor/ScheduleManager'
 import DashboardOverview from '../components/contractor/DashboardOverview'
 import WorkerApprovalRequests from '../components/contractor/WorkerApprovalRequests'
 import WorkerRequestManager from '../components/contractor/WorkerRequestManager'
+import ProjectDirectory from '../components/contractor/ProjectDirectory'
+import ProjectTimeline from '../components/contractor/ProjectTimeline'
+import ProjectDocuments from '../components/contractor/ProjectDocuments'
+import { ProjectProvider } from '../contexts/ProjectContext'
 
 const drawerWidth = 280
 
 const ContractorDashboard = () => {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [selectedProject, setSelectedProject] = useState(null)
   const { user, logout } = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
   }
+
+  // Get selected project from navigation state
+  useEffect(() => {
+    console.log('Location state:', location.state)
+    if (location.state?.selectedProject) {
+      console.log('Setting selected project:', location.state.selectedProject)
+      setSelectedProject(location.state.selectedProject)
+    }
+  }, [location.state])
 
   const handleLogout = () => {
     logout()
     navigate('/login')
   }
 
+  const handleBackToProjects = () => {
+    navigate('/contractor/projects')
+  }
+
   const menuItems = [
-    { text: 'Dashboard', icon: <Dashboard />, path: '/contractor' },
-    { text: 'Team Management', icon: <People />, path: '/contractor/team' },
-    { text: 'Worker Requests', icon: <Notifications />, path: '/contractor/requests' },
-    { text: 'Job Offers', icon: <Work />, path: '/contractor/jobs' },
-    { text: 'Expense Tracker', icon: <AttachMoney />, path: '/contractor/expenses' },
-    { text: 'Payroll Manager', icon: <Work />, path: '/contractor/payroll' },
-    { text: 'Schedule Manager', icon: <Schedule />, path: '/contractor/schedule' },
-    { text: 'Reports', icon: <Assessment />, path: '/contractor/reports' },
-    { text: 'Settings', icon: <Settings />, path: '/contractor/settings' }
+    { text: 'Dashboard', icon: <Dashboard />, path: '/contractor/dashboard' },
+    { text: 'Back to Projects', icon: <Business />, path: '/contractor/projects', isSpecial: true },
+    { text: 'Project Timeline', icon: <Home />, path: '/contractor/dashboard/timeline' },
+    { text: 'Documents', icon: <Folder />, path: '/contractor/dashboard/documents' },
+    { text: 'Team Management', icon: <People />, path: '/contractor/dashboard/team' },
+    { text: 'Worker Requests', icon: <Notifications />, path: '/contractor/dashboard/requests' },
+    { text: 'Job Offers', icon: <Work />, path: '/contractor/dashboard/jobs' },
+    { text: 'Expense Tracker', icon: <AttachMoney />, path: '/contractor/dashboard/expenses' },
+    { text: 'Payroll Manager', icon: <Work />, path: '/contractor/dashboard/payroll' },
+    { text: 'Schedule Manager', icon: <Schedule />, path: '/contractor/dashboard/schedule' },
+    { text: 'Reports', icon: <Assessment />, path: '/contractor/dashboard/reports' },
+    { text: 'Settings', icon: <Settings />, path: '/contractor/dashboard/settings' }
   ]
 
   const drawer = (
@@ -94,6 +119,14 @@ const ContractorDashboard = () => {
         <Typography variant="body2" color="text.secondary">
           {user?.company || 'Construction Company'}
         </Typography>
+        {selectedProject && (
+          <Chip 
+            label={selectedProject.name}
+            color="secondary" 
+            size="small" 
+            sx={{ mt: 1, mb: 1 }}
+          />
+        )}
         <Chip 
           label="Contractor" 
           color="primary" 
@@ -113,11 +146,11 @@ const ContractorDashboard = () => {
               mb: 0.5,
               borderRadius: 2,
               '&:hover': {
-                backgroundColor: 'rgba(25, 118, 210, 0.08)',
+                backgroundColor: item.isSpecial ? 'rgba(220, 0, 78, 0.08)' : 'rgba(25, 118, 210, 0.08)',
               }
             }}
           >
-            <ListItemIcon sx={{ color: 'primary.main' }}>
+            <ListItemIcon sx={{ color: item.isSpecial ? 'secondary.main' : 'primary.main' }}>
               {item.icon}
             </ListItemIcon>
             <ListItemText primary={item.text} />
@@ -170,9 +203,9 @@ const ContractorDashboard = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-            Mavu Contractor Dashboard
+            {selectedProject ? `${selectedProject.name} - Dashboard` : 'Mavu Contractor Dashboard'}
           </Typography>
-          <IconButton color="inherit" onClick={() => navigate('/contractor/requests')}>
+          <IconButton color="inherit" onClick={() => navigate('/contractor/dashboard/requests')}>
             <Badge badgeContent={2} color="error">
               <Notifications />
             </Badge>
@@ -220,14 +253,24 @@ const ContractorDashboard = () => {
         }}
       >
         <Routes>
-          <Route path="/" element={<DashboardOverview />} />
-          <Route path="/team" element={<TeamManagement />} />
-          <Route path="/requests" element={<WorkerApprovalRequests />} />
-          <Route path="/jobs" element={<WorkerRequestManager />} />
-          <Route path="/expenses" element={<ExpenseTracker />} />
-          <Route path="/payroll" element={<PayrollManager />} />
-          <Route path="/schedule" element={<ScheduleManager />} />
-          <Route path="/reports" element={<div>Reports Page</div>} />
+          <Route path="/" element={<DashboardOverview selectedProject={selectedProject} />} />
+          <Route path="/timeline" element={
+            <ProjectProvider projectId={selectedProject?.id} initial={{ homeowner: selectedProject?.homeowner }}>
+              <ProjectTimeline selectedProject={selectedProject} />
+            </ProjectProvider>
+          } />
+          <Route path="/documents" element={
+            <ProjectProvider projectId={selectedProject?.id} initial={{ homeowner: selectedProject?.homeowner }}>
+              <ProjectDocuments selectedProject={selectedProject} />
+            </ProjectProvider>
+          } />
+          <Route path="/team" element={<TeamManagement selectedProject={selectedProject} />} />
+          <Route path="/requests" element={<WorkerApprovalRequests selectedProject={selectedProject} />} />
+          <Route path="/jobs" element={<WorkerRequestManager selectedProject={selectedProject} />} />
+          <Route path="/expenses" element={<ExpenseTracker selectedProject={selectedProject} />} />
+          <Route path="/payroll" element={<PayrollManager selectedProject={selectedProject} />} />
+          <Route path="/schedule" element={<ScheduleManager selectedProject={selectedProject} />} />
+          <Route path="/reports" element={<div>Reports Page - {selectedProject?.name}</div>} />
           <Route path="/settings" element={<div>Settings Page</div>} />
         </Routes>
       </Box>

@@ -22,7 +22,10 @@
     "date-fns": "^2.29.3",
     "recharts": "^2.5.0",
     "react-hook-form": "^7.43.0",
-    "react-hot-toast": "^2.4.0"
+    "react-hot-toast": "^2.4.0",
+    "stripe": "^13.4.0",
+    "@stripe/connect-js": "^1.0.0",
+    "@stripe/react-connect-js": "^1.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   Box,
   Grid,
@@ -24,11 +25,14 @@ import {
   MoreVert,
   Work,
   CheckCircle,
-  Warning
+  Warning,
+  ArrowBack
 } from '@mui/icons-material'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 
-const DashboardOverview = () => {
+const DashboardOverview = ({ selectedProject }) => {
+  const navigate = useNavigate()
+  
   // Mock data - replace with actual API calls
   const stats = {
     totalWorkers: 24,
@@ -76,13 +80,22 @@ const DashboardOverview = () => {
 
   return (
     <Box>
+      {/* Header */}
       <Box sx={{ mb: 4 }}>
         <Typography variant="h4" gutterBottom sx={{ fontWeight: 600 }}>
-          Welcome back, John!
+          {selectedProject ? `${selectedProject.name} Dashboard` : 'Welcome back, John!'}
         </Typography>
         <Typography variant="body1" color="text.secondary">
-          Here's what's happening with your projects today
+          {selectedProject 
+            ? `Manage your ${selectedProject.name} project details, team, and progress`
+            : 'Here\'s what\'s happening with your projects today'
+          }
         </Typography>
+        {selectedProject && (
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+            Client: {selectedProject.client} • Budget: ${selectedProject.budget?.toLocaleString()} • Progress: {selectedProject.progress}%
+          </Typography>
+        )}
       </Box>
 
       {/* Key Metrics */}
