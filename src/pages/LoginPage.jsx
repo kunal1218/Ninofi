@@ -94,10 +94,10 @@ const LoginPage = () => {
                 fontSize: '2rem'
               }}
             >
-              M
+              N
             </Avatar>
             <Typography variant="h4" component="h1" gutterBottom sx={{ fontWeight: 700 }}>
-              Welcome to Mavu
+              Welcome to Ninofi
             </Typography>
             <Typography variant="body1" color="text.secondary">
               Your comprehensive contracting management solution
