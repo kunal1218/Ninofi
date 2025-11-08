@@ -82,48 +82,72 @@ const LoginPage = () => {
     <Box
       sx={{
         minHeight: '100vh',
+        height: '100vh',
         background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        py: 4
+        px: 1.5
       }}
     >
-      <Container maxWidth="sm">
+      <Container
+        maxWidth="sm"
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '100%',
+          py: { xs: 1.5, md: 2 }
+        }}
+      >
         <Paper
           elevation={24}
           sx={{
-            p: 4,
+            width: '100%',
+            maxWidth: 520,
+            p: { xs: 2.5, sm: 3.5 },
             borderRadius: 3,
             background: 'rgba(255, 255, 255, 0.95)',
             backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(255, 255, 255, 0.2)'
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            maxHeight: '86vh'
           }}
         >
           {/* Header */}
-          <Box sx={{ textAlign: 'center', mb: 4 }}>
+          <Box sx={{ textAlign: 'center', mb: 2.5 }}>
             <Avatar
               sx={{
-                width: 80,
-                height: 80,
+                width: 64,
+                height: 64,
                 mx: 'auto',
-                mb: 2,
+                mb: 1.5,
                 background: 'linear-gradient(45deg, #1976d2, #42a5f5)',
                 fontSize: '2rem'
               }}
             >
               N
             </Avatar>
-            <Typography variant="h4" component="h1" gutterBottom sx={{ fontWeight: 700 }}>
+            <Typography
+              variant="h4"
+              component="h1"
+              gutterBottom
+              sx={{
+                fontWeight: 700,
+                fontSize: { xs: '1.9rem', sm: '2.1rem' },
+                lineHeight: 1.25,
+                fontVariantLigatures: 'none',
+                fontFeatureSettings: '"liga" 0, "clig" 0',
+              }}
+            >
               Welcome to Ninofi
             </Typography>
-            <Typography variant="body1" color="text.secondary">
+            <Typography variant="body2" color="text.secondary">
               Your comprehensive contracting management solution
             </Typography>
           </Box>
 
           {/* User Type Selection */}
-          <Box sx={{ mb: 4, textAlign: 'center' }}>
+          <Box sx={{ mb: 2.5, textAlign: 'center' }}>
             <Typography variant="h6" gutterBottom>
               I am a:
             </Typography>
@@ -132,22 +156,22 @@ const LoginPage = () => {
               exclusive
               onChange={handleUserTypeChange}
               sx={{
-                mt: 1.5,
+                mt: 1,
                 width: '100%',
                 display: 'flex',
-                gap: 1.5,
+                gap: 1,
                 flexWrap: 'wrap',
                 justifyContent: 'center',
                 '& .MuiToggleButtonGroup-middleButton, & .MuiToggleButtonGroup-firstButton, & .MuiToggleButtonGroup-lastButton': {
                   border: 'none'
                 },
                 '& .MuiToggleButton-root': {
-                  px: 3,
-                  py: 1.5,
+                  px: 2.5,
+                  py: 1.2,
                   borderRadius: 999,
                   border: '1px solid rgba(0,0,0,0.12)',
                   fontWeight: 600,
-                  minWidth: { xs: '100%', sm: 150 },
+                  minWidth: { xs: '100%', sm: 140 },
                   '&.Mui-selected': {
                     background: 'linear-gradient(45deg, #1976d2, #42a5f5)',
                     color: 'white',
@@ -177,7 +201,7 @@ const LoginPage = () => {
           </Box>
 
           {/* Login Form */}
-          <Box component="form" onSubmit={handleSubmit} sx={{ mb: 3 }}>
+          <Box component="form" onSubmit={handleSubmit} sx={{ mb: 2 }}>
             <TextField
               fullWidth
               label="Email"
@@ -186,6 +210,7 @@ const LoginPage = () => {
               onChange={(e) => setEmail(e.target.value)}
               margin="normal"
               required
+              size="small"
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -204,6 +229,7 @@ const LoginPage = () => {
               onChange={(e) => setPassword(e.target.value)}
               margin="normal"
               required
+              size="small"
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -231,7 +257,7 @@ const LoginPage = () => {
               size="large"
               disabled={loading}
               sx={{
-                py: 1.5,
+                py: 1.1,
                 borderRadius: 2,
                 background: 'linear-gradient(45deg, #1976d2, #42a5f5)',
                 '&:hover': {
@@ -245,7 +271,7 @@ const LoginPage = () => {
 
           {/* Demo Login */}
           <Box sx={{ textAlign: 'center' }}>
-            <Typography variant="body2" color="text.secondary" gutterBottom>
+            <Typography variant="body2" color="text.secondary" gutterBottom sx={{ fontSize: '0.9rem' }}>
               Don't have an account? Try our demo:
             </Typography>
             <Button
@@ -266,15 +292,15 @@ const LoginPage = () => {
 
 
           {/* Features Preview */}
-          <Box sx={{ mt: 4, p: 3, bgcolor: 'grey.50', borderRadius: 2 }}>
-            <Typography variant="h6" gutterBottom sx={{ textAlign: 'center' }}>
+          <Box sx={{ mt: 2.5, p: 2, bgcolor: 'grey.50', borderRadius: 2 }}>
+            <Typography variant="subtitle1" gutterBottom sx={{ textAlign: 'center', fontWeight: 600 }}>
               {userType === 'customer'
                 ? 'Customer Features'
                 : userType === 'contractor'
                 ? 'Contractor Features'
                 : 'Worker Features'}
             </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', mb: 2 }}>
+            <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', mb: 1.5, fontSize: '0.9rem' }}>
               {userType === 'customer' 
                 ? 'Browse contractors, compare services, and start projects'
                 : userType === 'contractor' 
@@ -286,7 +312,7 @@ const LoginPage = () => {
               sx={{
                 display: 'grid',
                 gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
-                gap: 2
+                gap: 1.5
               }}
             >
               {featureDetails[userType].map((detail) => (
