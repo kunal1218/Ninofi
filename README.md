@@ -1,4 +1,4 @@
-# Mavu - Contracting Management App
+# Ninofi - Contracting Management App
 
 A comprehensive web application for managing contracting operations, including team management, expense tracking, payroll management, and worker scheduling.
 

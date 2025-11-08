@@ -307,7 +307,7 @@ REACT_APP_API_URL=http://localhost:3001/api`}
 
         <Typography variant="body1" color="text.secondary" paragraph>
           This guide will walk you through setting up and using the Stripe Connect integration
-          in your Mavu contracting application.
+          in your Ninofi contracting application.
         </Typography>
 
         <Stepper activeStep={expandedStep} orientation="vertical">

@@ -26,7 +26,7 @@ const LoadingScreen = () => {
         color="white"
         sx={{ fontWeight: 500 }}
       >
-        Loading Mavu...
+        Loading Ninofi...
       </Typography>
     </Box>
   )

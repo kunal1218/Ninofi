@@ -85,7 +85,7 @@ const ContractorVerification = () => {
   const getStatusDescription = () => {
     switch (verificationStatus) {
       case 'completed':
-        return 'Your account has been successfully verified. You can now access your dashboard and start using Mavu.'
+        return 'Your account has been successfully verified. You can now access your dashboard and start using Ninofi.'
       case 'pending':
         return 'We are currently reviewing your business information and worker details. This usually takes a few minutes.'
       default:
@@ -145,7 +145,7 @@ const ContractorVerification = () => {
 
           {verificationStatus === 'completed' && (
             <Alert severity="success" sx={{ mb: 3 }}>
-              Your account has been verified successfully! You can now access all features of Mavu.
+              Your account has been verified successfully! You can now access all features of Ninofi.
             </Alert>
           )}
 

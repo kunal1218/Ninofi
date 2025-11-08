@@ -203,7 +203,7 @@ const ContractorDashboard = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-            {selectedProject ? `${selectedProject.name} - Dashboard` : 'Mavu Contractor Dashboard'}
+            {selectedProject ? `${selectedProject.name} - Dashboard` : 'Ninofi Contractor Dashboard'}
           </Typography>
           <IconButton color="inherit" onClick={() => navigate('/contractor/dashboard/requests')}>
             <Badge badgeContent={2} color="error">

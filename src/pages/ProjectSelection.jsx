@@ -76,7 +76,7 @@ const ProjectSelection = () => {
       >
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 600 }}>
-            Mavu - Project Selection
+            Ninofi - Project Selection
           </Typography>
           
           {/* User Info */}
@@ -182,7 +182,7 @@ const ProjectSelection = () => {
         }}
       >
         <Typography variant="body2" color="text.secondary">
-          © 2024 Mavu Contracting Platform. All rights reserved.
+          © 2024 Ninofi Contracting Platform. All rights reserved.
         </Typography>
       </Box>
     </Box>

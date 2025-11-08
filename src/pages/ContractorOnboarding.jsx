@@ -851,7 +851,7 @@ const ContractorOnboarding = () => {
               Contractor Onboarding
             </Typography>
             <Typography variant="body1" color="text.secondary">
-              Complete your profile to start using Mavu
+              Complete your profile to start using Ninofi
             </Typography>
           </Box>
 

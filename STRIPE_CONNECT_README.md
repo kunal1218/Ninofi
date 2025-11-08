@@ -1,6 +1,6 @@
 # Stripe Connect Integration
 
-This document provides a comprehensive guide for the Stripe Connect integration in your Mavu contracting application.
+This document provides a comprehensive guide for the Stripe Connect integration in your Ninofi contracting application.
 
 ## Overview
 
@@ -257,4 +257,4 @@ REACT_APP_DEBUG_STRIPE=true
 
 ## License
 
-This integration is part of the Mavu contracting application and follows the same license terms.
+This integration is part of the Ninofi contracting application and follows the same license terms.

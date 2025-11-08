@@ -145,7 +145,7 @@ const WorkerVerification = () => {
 
           {verificationStatus === 'completed' && (
             <Alert severity="success" sx={{ mb: 3 }}>
-              Your account has been verified successfully! You can now access all features of Mavu and start finding work opportunities.
+              Your account has been verified successfully! You can now access all features of Ninofi and start finding work opportunities.
             </Alert>
           )}
 

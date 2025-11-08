@@ -19,7 +19,10 @@ import {
   Visibility,
   VisibilityOff,
   Email,
-  Lock
+  Lock,
+  Schedule,
+  MonetizationOn,
+  CheckCircle
 } from '@mui/icons-material'
 import { useAuth } from '../contexts/AuthContext'
 
@@ -58,6 +61,21 @@ const LoginPage = () => {
       navigate(userType === 'customer' ? '/customer' : userType === 'contractor' ? '/contractor' : '/worker')
     }
     setLoading(false)
+  }
+
+  const featureDetails = {
+    customer: [
+      { icon: <CheckCircle sx={{ color: '#1976d2' }} />, text: 'Browse vetted contractors' },
+      { icon: <MonetizationOn sx={{ color: '#009688' }} />, text: 'Track proposals & budgets' }
+    ],
+    contractor: [
+      { icon: <MonetizationOn sx={{ color: '#ff9800' }} />, text: 'Monitor payroll & expenses' },
+      { icon: <Schedule sx={{ color: '#ab47bc' }} />, text: 'Coordinate worker schedules' }
+    ],
+    worker: [
+      { icon: <CheckCircle sx={{ color: '#4caf50' }} />, text: 'Log hours & submit expenses' },
+      { icon: <Schedule sx={{ color: '#5c6bc0' }} />, text: 'Stay aligned with shifts' }
+    ]
   }
 
   return (
@@ -114,16 +132,31 @@ const LoginPage = () => {
               exclusive
               onChange={handleUserTypeChange}
               sx={{
+                mt: 1.5,
+                width: '100%',
+                display: 'flex',
+                gap: 1.5,
+                flexWrap: 'wrap',
+                justifyContent: 'center',
+                '& .MuiToggleButtonGroup-middleButton, & .MuiToggleButtonGroup-firstButton, & .MuiToggleButtonGroup-lastButton': {
+                  border: 'none'
+                },
                 '& .MuiToggleButton-root': {
-                  px: 4,
-                  py: 2,
-                  borderRadius: 2,
+                  px: 3,
+                  py: 1.5,
+                  borderRadius: 999,
+                  border: '1px solid rgba(0,0,0,0.12)',
+                  fontWeight: 600,
+                  minWidth: { xs: '100%', sm: 150 },
                   '&.Mui-selected': {
                     background: 'linear-gradient(45deg, #1976d2, #42a5f5)',
                     color: 'white',
                     '&:hover': {
                       background: 'linear-gradient(45deg, #1565c0, #1976d2)',
                     }
+                  },
+                  '&:hover': {
+                    backgroundColor: 'rgba(25,118,210,0.08)'
                   }
                 }
               }}
@@ -235,9 +268,13 @@ const LoginPage = () => {
           {/* Features Preview */}
           <Box sx={{ mt: 4, p: 3, bgcolor: 'grey.50', borderRadius: 2 }}>
             <Typography variant="h6" gutterBottom sx={{ textAlign: 'center' }}>
-              {userType === 'contractor' ? 'Contractor Features:' : 'Worker Features:'}
+              {userType === 'customer'
+                ? 'Customer Features'
+                : userType === 'contractor'
+                ? 'Contractor Features'
+                : 'Worker Features'}
             </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center' }}>
+            <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', mb: 2 }}>
               {userType === 'customer' 
                 ? 'Browse contractors, compare services, and start projects'
                 : userType === 'contractor' 
@@ -245,6 +282,32 @@ const LoginPage = () => {
                 : 'View schedule, track hours, submit expenses, and manage profile'
               }
             </Typography>
+            <Box
+              sx={{
+                display: 'grid',
+                gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
+                gap: 2
+              }}
+            >
+              {featureDetails[userType].map((detail) => (
+                <Box
+                  key={detail.text}
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1.5,
+                    p: 2,
+                    borderRadius: 2,
+                    backgroundColor: 'rgba(255,255,255,0.9)'
+                  }}
+                >
+                  {detail.icon}
+                  <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                    {detail.text}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
           </Box>
         </Paper>
       </Container>
