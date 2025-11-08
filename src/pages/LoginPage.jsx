@@ -87,7 +87,8 @@ const LoginPage = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        px: 1.5
+        px: 1.5,
+        py: { xs: 1.5, md: 2 }
       }}
     >
       <Container
@@ -110,7 +111,7 @@ const LoginPage = () => {
             background: 'rgba(255, 255, 255, 0.95)',
             backdropFilter: 'blur(10px)',
             border: '1px solid rgba(255, 255, 255, 0.2)',
-            maxHeight: '86vh'
+            maxHeight: { xs: 'calc(100vh - 32px)', sm: 'calc(100vh - 48px)' }
           }}
         >
           {/* Header */}
@@ -311,7 +312,10 @@ const LoginPage = () => {
             <Box
               sx={{
                 display: 'grid',
-                gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
+                gridTemplateColumns: {
+                  xs: '1fr',
+                  sm: 'repeat(auto-fit, minmax(200px, 1fr))'
+                },
                 gap: 1.5
               }}
             >
